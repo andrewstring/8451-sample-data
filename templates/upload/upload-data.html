@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Upload{% endblock %}
+{% block head %}
+    {{ super() }}
+    <script>
+    alert("NOTE: The server has a file limit, so if you get 413 error, you need to use smaller files");
+    </script>
+{% endblock %}
+{% block header_title %}Upload Data{% endblock %}
+{% block header %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<div class="upload">
+    <form method="post" enctype="multipart/form-data">
+        <label for="household">Drag Household CSV Into Square Below:</label>
+        <input class="input-file" type="file" title=" " name="household" required>
+        <br>
+        <label for="product">Drag Product CSV Into Square Below:</label>
+        <input class="input-file" type="file" name="product" required>
+        <br>
+        <label for="transaction">Drag Transaction CSV Into Square Below:</label>
+        <input class="input-file" type="file" name="transaction" required>
+        <br>
+        <label for="houseNum">HouseNum to Pull:</label>
+        <input type="text" name="houseNum" required>
+        <button type="submit">Submit</button>
+        <a href="/">Back to Selection</a>
+    </form>
+</div>
+{% endblock %}
