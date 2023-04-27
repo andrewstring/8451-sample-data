@@ -53,7 +53,6 @@ def selection():
 @app.route("/display-10")
 def display_ten():
     elements = run(10)
-    print(elements)
     return render_template("/display/display-table.html", elem=elements, num=10)
 
 @app.route("/display-selection", methods=('GET','POST'))
@@ -67,7 +66,6 @@ def display_selection():
 
 @app.route("/display-selected-num")
 def display_selected_num():
-    print(request.args.get("num"))
     elements = run(int(request.args.get("num")))
     return render_template("/display/display-table.html", elem=elements, num=request.args.get("num"))
 
@@ -91,7 +89,6 @@ def upload_data():
         transaction.save(path)
 
         houseNum = request.form["houseNum"]
-        print(houseNum)
 
         return redirect(url_for('display_uploaded', household=household.filename,
         product=product.filename, transaction=transaction.filename, houseNum=houseNum))
@@ -100,10 +97,6 @@ def upload_data():
 
 @app.route("/display-uploaded")
 def display_uploaded():
-    # print(request.args['household'])
-    # print(request.args['product'])
-    # print(request.args['transaction'])
-    # return render_template("/upload/display-uploaded.html")
     files = [
         request.args['household'],
         request.args['product'],
