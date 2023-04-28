@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Household {{ num }}{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block header_title %}House Number List{% endblock %}
+{% block header %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<ul>
+    {% for num in household_num %}
+    <li class="selection small"><a href="{{ url_for('display_selected_num', num=num) }}"">{{ num }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

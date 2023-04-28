@@ -1,10 +1,12 @@
 import pandas as pd
 import os
+from path import abs_path
 
 
 def get_pd_df(dir, schema):
     pd.set_option('display.max_columns', None)
-    pd_df = pd.read_csv(dir, header=0, names=schema)
+    print(abs_path(dir))
+    pd_df = pd.read_csv(abs_path(dir), header=0, names=schema)
     return pd_df
 
 def get_three_df(dirs, schemas):
@@ -17,6 +19,24 @@ def get_joined_df(pd_df_arr):
     first_join = pd_df_arr[2].merge(pd_df_arr[0], how="inner", on="HouseholdNum")
     second_join = first_join.merge(pd_df_arr[1], how="inner", on="ProductNum")
     return second_join
+
+def get_householdnum(path):
+    householdSchema = [
+        "HouseholdNum",
+        "Loyalty",
+        "AgeRange",
+        "Marital",
+        "IncomeRange",
+        "Homeowner",
+        "Composition",
+        "Size",
+        "Children"
+    ]
+
+    absolute_path = abs_path(path)
+    household_df = pd.read_csv(absolute_path, header=0, names=householdSchema)
+    household_nums = household_df["HouseholdNum"].tolist()
+    return household_nums
 
     
 
@@ -39,9 +59,9 @@ def run(num):
     # ]
 
     dirs = [
-        "./data/400_data/400_households.csv",
-        "./data/400_data/400_products.csv",
-        "./data/400_data/400_transactions.csv"
+        "/data/400_data/400_households.csv",
+        "/data/400_data/400_products.csv",
+        "/data/400_data/400_transactions.csv"
     ]
 
     householdSchema = [

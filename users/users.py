@@ -1,15 +1,17 @@
+from path import abs_path
+
 def create_users_file():
     open("./users.txt", "w")
 
 def user_add(username, password, email):
     username_list = []
-    with open("./users/users.txt", "r") as users:
+    with open(abs_path("/users/users.txt"), "r") as users:
         individual_users = users.readlines()
         for user in individual_users:
             username_list.append(user.split(",")[0])
 
     if username not in username_list:
-        with open("./users/users.txt", "a") as users:
+        with open(abs_path("/users/users.txt"), "a") as users:
             users.write(",".join([username, password, email])+"\n")
             return 1
     else:
@@ -17,7 +19,7 @@ def user_add(username, password, email):
 
 def user_login(username, password):
     username_list = []
-    with open("./users/users.txt", "r") as users:
+    with open(abs_path("/users/users.txt"), "r") as users:
         individual_users = users.readlines()
         for user in individual_users:
             username_list.append(user.split(",")[0:2])

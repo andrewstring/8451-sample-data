@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
 from data.blob_access import run, run_files
 from users.users import user_add, user_login
+from data.blob_access import get_householdnum
 
 import os
 from werkzeug.utils import secure_filename
+
 UPLOAD_FOLDER = "/data/uploads"
 ALLOWED_EXTENSIONS = {'csv'}
 
@@ -63,6 +65,11 @@ def display_selection():
         return redirect(url_for('display_selected_num', num=houseNum))
 
     return render_template("/display/house-selection.html")
+
+@app.route("/housenum-list")
+def housenum_list():
+    housenum = get_householdnum("/data/400_data/400_households.csv")
+    return render_template("/display/housenum-list.html", household_num=housenum)
 
 @app.route("/display-selected-num")
 def display_selected_num():

@@ -39,6 +39,11 @@
     width: 100px;
 }
 
+.small {
+    height: 20px;
+    margin: 50px;
+}
+
 .auth-form {
     text-align: center;
 }
@@ -113,4 +118,8 @@ table, th, td {
 }
 table {
     width: 100%;
+}
+
+ul {
+    list-style-type: none;
 }
