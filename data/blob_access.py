@@ -36,7 +36,7 @@ def get_householdnum(path):
     absolute_path = abs_path(path)
     household_df = pd.read_csv(absolute_path, header=0, names=householdSchema)
     household_nums = household_df["HouseholdNum"].tolist()
-    return household_nums
+    return sorted(household_nums)
 
     
 
